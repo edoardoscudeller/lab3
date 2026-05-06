@@ -7,14 +7,13 @@ void BacktrackingWLOpt::FirstOfLevel()
 
 bool BacktrackingWLOpt::NextOfLevel()
 {
-  unsigned next_w = out.Assignment(level) + 1;
-  if (next_w >= in.Warehouses())
+  int w = out.Assignment(level);
+  if (w < (int)in.Warehouses() - 1)
   {
-    out.Assign(level, -1);
-    return false;
+    out.Assign(level, w + 1);
+    return true;
   }
-  out.Assign(level, (int)next_w);
-  return true;
+  return false;
 }
 
 bool BacktrackingWLOpt::Feasible()
@@ -34,7 +33,7 @@ bool BacktrackingWLOpt::NonImprovingBranch()
 {
   return out.TotalCost() >= best_cost;
 }
-  
+
 void BacktrackingWLOpt::GoUpOneLevel()
 {
   out.Assign(level, -1);
