@@ -7,7 +7,7 @@ void BacktrackingWLOpt::FirstOfLevel()
 
 bool BacktrackingWLOpt::NextOfLevel()
 {
-  unsigned next_w = (unsigned)(out.Assignment(level) + 1); // cast not necessary, but it makes it clear (return unisgned and not int)
+  unsigned next_w = out.Assignment(level) + 1;
   if (next_w >= in.Warehouses())
   {
     out.Assign(level, -1);
